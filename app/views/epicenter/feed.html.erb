@@ -3,11 +3,11 @@
 <div class="well well-sm">
 <% @following_tweets.each do |tweet| %>
 <div>
-	<% if user.avatar.url != nil %>
-	<p><%= image_tag current_user.avatar.url, size:35 %>
+	<% if current_user.avatar.url != nil %>
+	<%= image_tag current_user.avatar.url, size:35 %>
 		<% end %>
-@<%= tweet.user.username %> 
-&bull; <%= time_ago_in_words(tweet.created_at) if Time.now - tweet.created_at < 86400 %> 
+<p>@<%= tweet.user.username %></p> 
+<p>&bull; <%= time_ago_in_words(tweet.created_at) if Time.now - tweet.created_at < 86400 %> 
 <%= tweet.created_at.strftime('%b %e') if Time.now - tweet.created_at > 86400 %> 
 	
 	&bull; <%= tweet.message.html_safe %></p>
