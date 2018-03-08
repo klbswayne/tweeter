@@ -1,0 +1,35 @@
+<div class="row">
+<% @users.each do |user| %>
+<div class="col-xs-3">
+<div class="well user-list-wells">
+	<div class="row">
+	<div class="col-xs-3">
+	<% if user.avatar.url != nil %>
+<%= image_tag user.avatar.url, size: 30 %>
+<% end %>
+</div>
+<div class="col-xs-3">
+</div>
+</div>
+<center><div class="row">
+<%= link_to show_user_path(id: user.id) do %>
+<h3><%= user.name %></h3>
+<p>@<%= user.username %></p>
+<% end %>
+<p>
+<%= user.bio %>
+</p>
+<p>
+<% if current_user.following.include?(user.id) %>
+<%= link_to "Following", unfollow_path(id: user.id), class: "btn btn-primary", id: "unfollow-btn", class: "img-responsive" %>
+<% else %>
+<% if current_user.id != user.id %>
+<%= link_to "Follow", now_following_path(id: user.id), class: "btn btn-primary" %>
+<% end %>
+<% end %>
+</p>
+</div></center>
+</div>
+</div>
+<% end %>
+</div>

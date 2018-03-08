@@ -1,0 +1,14 @@
+​
+<center><h1>Current Tweets</h1></center>
+<div class="well well-sm">
+<% @following_tweets.each do |tweet| %>
+<div>
+	<p><%= image_tag current_user.avatar.url, size:35 %>
+@<%= tweet.user.username %> 
+&bull; <%= time_ago_in_words(tweet.created_at) if Time.now - tweet.created_at < 86400 %> 
+<%= tweet.created_at.strftime('%b %e') if Time.now - tweet.created_at > 86400 %> 
+	
+	&bull; <%= tweet.message.html_safe %></p>
+</div>
+<% end %>
+</div></div>
